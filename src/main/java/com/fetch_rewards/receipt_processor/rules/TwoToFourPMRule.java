@@ -14,7 +14,7 @@ public class TwoToFourPMRule implements Rule {
     public int apply(Receipt receipt) {
         int points = 0;
         if (receipt != null && receipt.getPurchaseTime() != null) {
-            int hr = Integer.parseInt(receipt.getPurchaseTime().substring(0,2));
+            int hr = Integer.parseInt(receipt.getPurchaseTime().substring(0, 2));
             if (hr >= 14 && hr < 16) {
                 points = 10;
             }

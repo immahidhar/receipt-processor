@@ -10,6 +10,6 @@ import lombok.AllArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReceiptId {
-    @NotBlank(message = "The id is invalid.")
+    @NotBlank
     String id;
 }

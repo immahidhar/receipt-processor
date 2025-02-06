@@ -14,7 +14,7 @@ public class OddDateRule implements Rule {
     public int apply(Receipt receipt) {
         int points = 0;
         if (receipt != null && receipt.getPurchaseDate() != null && Integer.parseInt(receipt.getPurchaseDate()
-                    .substring(receipt.getPurchaseDate().length() - 2)) % 2 == 1) {
+                .substring(receipt.getPurchaseDate().length() - 2)) % 2 == 1) {
             points = 6;
         }
         log.debug("{}", points);

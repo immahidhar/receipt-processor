@@ -30,6 +30,7 @@ public class ReceiptAPI {
 
     /**
      * Test API to verify if service is up or not
+     *
      * @return Up and running confirmation
      */
     @RequestMapping("/")
@@ -40,6 +41,7 @@ public class ReceiptAPI {
 
     /**
      * Endpoint to process given receipt
+     *
      * @param receipt receipt
      * @return Receipt Id
      */

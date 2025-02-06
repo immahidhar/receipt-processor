@@ -15,8 +15,8 @@ public class Receipt {
     String purchaseDate;
     @NotBlank
     String purchaseTime;
-    @NotNull
-    double total;
+    @NotBlank
+    String total;
     @NotNull
     @Size(min = 1)
     List<Item> items;

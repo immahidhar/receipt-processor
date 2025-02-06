@@ -1,4 +1,4 @@
-package com.fetch_rewards.receipt_processor.api.exceptions;
+package com.fetch_rewards.receipt_processor.exceptions;
 
 public class ReceiptIdNotFoundException extends RuntimeException {
 

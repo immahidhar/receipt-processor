@@ -13,7 +13,7 @@ public class QuarterMultipleRule implements Rule {
     @Override
     public int apply(Receipt receipt) {
         int points = 0;
-        if (receipt != null && receipt.getTotal() % 0.25 == 0) {
+        if (receipt != null && receipt.getTotal() != null && Double.parseDouble(receipt.getTotal()) % 0.25 == 0) {
             points = 25;
         }
         log.debug("{}", points);

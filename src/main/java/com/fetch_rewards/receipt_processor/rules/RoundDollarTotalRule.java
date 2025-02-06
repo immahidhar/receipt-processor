@@ -13,7 +13,7 @@ public class RoundDollarTotalRule implements Rule {
     @Override
     public int apply(Receipt receipt) {
         int points = 0;
-        if (receipt != null && receipt.getTotal() % 1 == 0) {
+        if (receipt != null && receipt.getTotal() != null && Double.parseDouble(receipt.getTotal()) % 1 == 0) {
             points = 50;
         }
         log.debug("{}", points);

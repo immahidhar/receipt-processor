@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-public class RetailerRule implements Rule{
+public class RetailerRule implements Rule {
     @Override
     public int apply(Receipt receipt) {
         int points = 0;

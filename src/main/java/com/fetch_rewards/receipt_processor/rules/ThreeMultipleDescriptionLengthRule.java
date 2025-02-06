@@ -18,8 +18,8 @@ public class ThreeMultipleDescriptionLengthRule implements Rule {
         int points = 0;
         if (receipt != null && receipt.getItems() != null) {
             for (Item item : receipt.getItems()) {
-                if(item.getShortDescription() != null && item.getShortDescription().strip().length() % 3 == 0) {
-                    points += (int) Math.ceil(item.getPrice() * 0.2);
+                if (item.getShortDescription() != null && item.getShortDescription().strip().length() % 3 == 0) {
+                    points += (int) Math.ceil(Double.parseDouble(item.getPrice()) * 0.2);
                 }
             }
         }

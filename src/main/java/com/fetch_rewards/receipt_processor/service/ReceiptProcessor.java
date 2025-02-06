@@ -1,6 +1,6 @@
 package com.fetch_rewards.receipt_processor.service;
 
-import com.fetch_rewards.receipt_processor.api.exceptions.ReceiptIdNotFoundException;
+import com.fetch_rewards.receipt_processor.exceptions.ReceiptIdNotFoundException;
 import com.fetch_rewards.receipt_processor.data.Receipt;
 import com.fetch_rewards.receipt_processor.rules.Rule;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +31,7 @@ public class ReceiptProcessor {
 
     /**
      * Get points for a given receipt id.
+     *
      * @param id receipt id
      * @return points if receipt id present, -1 if not
      */
@@ -46,6 +47,7 @@ public class ReceiptProcessor {
      * Process receipt:
      * 1. Generate a new unique id
      * 2. Calculate points for this receipt
+     *
      * @param receipt receipt
      * @return new unique id
      */
@@ -60,6 +62,7 @@ public class ReceiptProcessor {
     /**
      * Generate a new unique id with UUID
      * Validate with already generated ids
+     *
      * @return new unique id
      */
     private String generateId() {
@@ -72,6 +75,7 @@ public class ReceiptProcessor {
 
     /**
      * Apply each rule and calculate overall points
+     *
      * @param receipt receipt
      * @return points
      */
