@@ -1,12 +1,12 @@
 package com.fetch_rewards.receipt_processor.service;
 
+import com.fetch_rewards.receipt_processor.api.exceptions.ReceiptIdNotFoundException;
 import com.fetch_rewards.receipt_processor.data.Receipt;
 import com.fetch_rewards.receipt_processor.rules.Rule;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -25,12 +25,6 @@ public class ReceiptProcessor {
     private List<Rule> rules;
 
     /**
-     * In Memory Database of receipts with their Ids. (id: receipt)
-     * Note: Storing receipt itself may not be required, but stored anyway for convenience
-     */
-    private final Map<String, Receipt> receipts = new ConcurrentHashMap<>();
-
-    /**
      * In Memory Database for points associated with a receipt id. (id: points)
      */
     private final Map<String, Integer> receipt_points = new ConcurrentHashMap<String, Integer>();
@@ -41,7 +35,11 @@ public class ReceiptProcessor {
      * @return points if receipt id present, -1 if not
      */
     public int getPoints(String id) {
-        return receipt_points.getOrDefault(id, -1);
+        if (receipt_points.containsKey(id)) {
+            return receipt_points.get(id);
+        } else {
+            throw new ReceiptIdNotFoundException("No receipt found for that ID.");
+        }
     }
 
     /**
@@ -53,8 +51,9 @@ public class ReceiptProcessor {
      */
     public String processReceipt(Receipt receipt) {
         String id = generateId();
-        receipts.put(id, receipt);
-        receipt_points.put(id, applyRules(receipt));
+        int points = applyRules(receipt);
+        receipt_points.put(id, points);
+        log.debug("points = {}", points);
         return id;
     }
 
@@ -65,7 +64,7 @@ public class ReceiptProcessor {
      */
     private String generateId() {
         String id = UUID.randomUUID().toString();
-        while (receipts.containsKey(id)) {
+        while (receipt_points.containsKey(id)) {
             id = UUID.randomUUID().toString();
         }
         return id;
